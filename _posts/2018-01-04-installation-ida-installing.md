@@ -46,6 +46,7 @@ server create server_name
 server_name must use only Unicode alphanumeric (for example, 0-9, a-z, A-Z), underscore (_), dash (-), plus (+), and period (.) characters. The name cannot begin with a dash or period. Your file system, operating system, or compressed file directory might impose more restrictions.
 
 If the server is created successfully, you receive message: Server server_name created.
+
 	
 **Configure WAS Liberty**  
 
@@ -103,6 +104,27 @@ If the server is created successfully, you receive message: Server server_name c
 For example:  
 In Liberty installation bin folder you can use below command to start the server.
 **server start default** (default is your server name).
+
+**Install Trustore for [WASADMIN] deployment service**
+
+[WASADMIN]: ../installation/installation-ida-repacking.html#configure-deployment-service-type 
+
+* Copy [IDA_HOME]/conf/**truststore.jks** to *wlp/usr/servers/servername* folder or generate your own truststore file using tools like keytool.
+```
+cd PATH/TO/JAVA/BIN
+keytool -genkey -keyalg RSA -alias selfsigned -keystore wlp/usr/servers/servername/truststore.jks -storepass testingweb -validity 360 -keysize 2048
+```
+
+* Edit **server.xml** from *wlp/usr/servers/servername* folder to include the trustore ssl configuration as below:
+```
+    <ssl id="defaultSSLConfig" trustStoreRef="idaTrustStore"/>
+
+    <keyStore id="idaTrustStore" 
+        location="${server.config.dir}/truststore.jks" 
+        type="JKS" 
+        password="testingweb" />
+```
+
 
 ### Customizing the Liberty environment with jvm.optioins - optional
 Customize JVM options by using jvm.options files.

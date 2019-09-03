@@ -37,7 +37,8 @@ Edit [IDA_HOME]/conf/**ida.properties** under **conf** folder. This properties f
 *  **deployment.interval** : The interval in seconds for REST API call to check if snapshot is installed on PS and set as default snapshot
 *  **jasypt.encryptor.password** : default value password  
 *  **enable_case_history** : Enable save test case history function, default value is true.  
-*  **max_case_history** : Set latest test case history max number of each test case, default value is 100.    
+*  **max_case_history** : Set latest test case history max number of each test case, default value is 100.
+*  **deployment.service.type**: Set the deployment service type to be WASADMIN or SSH.   
 
 **Notes** 
 If you want to use encrypt database password in the **spring.datasource.password**.You need to generate the encrypt password.There are two ways to generate it.The secret key is define in the **jasypt.encryptor.password**.
@@ -80,6 +81,11 @@ You can uncomment DB2 property configuration and comment MySQL property configur
 ![][db2config]
 
 [db2config]: ../images/install/db2configuration.png
+
+#### Configure Deployment Service type
+You can configure the deployment service type to be either WASADMIN or SSH for executing Pipeline steps including the Deployment step(Online or Offline Deployment) and the Scirpt step(to invoke BPM wasadmin commands such as AdminTask.BPMSetEnvironmentVariable). If you set **deployment.service.type** to WASADMIN, the steps are executed using WAS Administration Thin Client APIs. If you set **deployment.service.type** to SSH, the steps are executed via SSH. To use WASADMIN deployment service type, follow **ADMINISTRATION** steps in [Add a BPM server with WASADMIN deployment service].
+
+[Add a BPM server with WASADMIN deployment service]: ../administration/administration-bpm-configuration.html#add-a-bpm-server
 
 **Notes**   
 
