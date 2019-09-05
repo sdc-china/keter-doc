@@ -31,22 +31,14 @@ order: 2
       | Connected Server Name  | online PS server name               |
       
   
-  4. Download BPM Server certificate from WAS console.
-    ![][BPM_Server_certificate_1]
-    ![][BPM_Server_certificate_2]
-    ![][BPM_Server_certificate_3]
-    ![][BPM_Server_certificate_4]
-    ![][BPM_Server_certificate_5]
-    ![][BPM_Server_certificate_6]
-    ![][BPM_Server_certificate_7]
+  4. When you click **Save** button, IDA will auto-import the BPM Server SSL certificate to the turststore file configured on your IDA server. But for it to take effect in pipeline deployment/script steps, you need to restart IDA server. The BPM Server Configuration table list servers that require IDA restart for their SSL certificate to take effect.
+  ![][BPM_Server_Configuration_List]
 
-  5. Import the BPM Server certificate to turststore installed on your IDA server. For example, if you IDA runs on liberty, use command below to import the certificate:
-  ```
-  cd PATH/TO/JAVA/BIN
-  keytool -importcert -file /PATH/TO/pc860.cert -alias pc860 -keystore wlp/usr/servers/servername/truststore.jks
-  ```
+  5. Restart IDA server to make the SSL certificates take effect for [WASADMIN] deployment service.
 
-  6. Restart IDA server to make the truststore take effect for [WASADMIN] deployment service.
+  [BPM_Server_Configuration_List]: ../images/administrator/BPM_Server_Configuration_List.jpg
+
+  
 
 **Notes:**  
 The WAS Server Working Directory can be found on the server's Process Definition:

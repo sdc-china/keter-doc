@@ -39,6 +39,7 @@ Edit [IDA_HOME]/conf/**ida.properties** under **conf** folder. This properties f
 *  **enable_case_history** : Enable save test case history function, default value is true.  
 *  **max_case_history** : Set latest test case history max number of each test case, default value is 100.
 *  **deployment.service.type**: Set the deployment service type to be WASADMIN or SSH.   
+*  **truststore.location**: Set the IDA server's truststore file location.  
 
 **Notes** 
 If you want to use encrypt database password in the **spring.datasource.password**.You need to generate the encrypt password.There are two ways to generate it.The secret key is define in the **jasypt.encryptor.password**.
@@ -83,7 +84,9 @@ You can uncomment DB2 property configuration and comment MySQL property configur
 [db2config]: ../images/install/db2configuration.png
 
 #### Configure Deployment Service type
-You can configure the deployment service type to be either WASADMIN or SSH for executing Pipeline steps including the Deployment step(Online or Offline Deployment) and the Scirpt step(to invoke BPM wasadmin commands such as AdminTask.BPMSetEnvironmentVariable). If you set **deployment.service.type** to WASADMIN, the steps are executed using WAS Administration Thin Client APIs. If you set **deployment.service.type** to SSH, the steps are executed via SSH. To use WASADMIN deployment service type, follow **ADMINISTRATION** steps in [Add a BPM server with WASADMIN deployment service].
+You can configure the deployment service type to be either WASADMIN or SSH for executing Pipeline steps including the Deployment step(Online or Offline Deployment) and the Scirpt step(to invoke BPM wasadmin commands such as AdminTask.BPMSetEnvironmentVariable).  If you set **deployment.service.type** to SSH, the steps are executed via SSH. If you set **deployment.service.type** to WASADMIN, the steps are executed using WAS Administration Thin Client APIs. In this case, you also need to set the value of **truststore.location** properly. It is the truststore file location configured on IDA server. Scroll down to see [**Install Trustore for WASADMIN deployment service**](../installation/installation-ida-installing.html#installing-on-liberty) for a Liberty config example.
+
+To use WASADMIN deployment service type, follow **ADMINISTRATION** steps in [Add a BPM server with WASADMIN deployment service].
 
 [Add a BPM server with WASADMIN deployment service]: ../administration/administration-bpm-configuration.html#add-a-bpm-server
 
